@@ -1,4 +1,5 @@
 """Full-output checks against an independent Python i-j-k reference."""
+import argparse
 import csv
 import random
 import subprocess
@@ -12,6 +13,9 @@ def write_matrix(path, rows):
         csv.writer(f).writerows(rows)
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--build-dir", type=Path, default=ROOT / "build")
+    options = parser.parse_args()
     rng = random.Random(2026)
     cases = [
         ([[1, 2], [3, 4]], [[5, 6], [7, 8]]),
@@ -35,7 +39,7 @@ def main():
             write_matrix(work / f"experiments/matrix/B_{n}.csv", b)
             for threads in (None, 1, 2, 4):
                 name = "sequential" if threads is None else "parallel"
-                args = [str(ROOT / f"build/matrix_{name}.exe"), str(n)]
+                args = [str(options.build_dir.resolve() / f"matrix_{name}.exe"), str(n)]
                 if threads is not None:
                     args.append(str(threads))
                 run = subprocess.run(args, cwd=work, check=True,

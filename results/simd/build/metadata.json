@@ -1,0 +1,89 @@
+{
+  "compiler": "gcc (Rev6, Built by MSYS2 project) 16.2.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "base_flags": [
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fopenmp",
+    "-fno-tree-slp-vectorize"
+  ],
+  "variants": {
+    "scalar": [
+      "-fno-tree-loop-vectorize"
+    ],
+    "simd": [
+      "-ftree-loop-vectorize",
+      "-DENABLE_SIMD"
+    ]
+  },
+  "sources": {
+    "c\\matrix_common.h": "7d189d6389bdbda96cde7b95cccb0144f39b034b5807b465334cb4540e4c00b7",
+    "c\\matrix_parallel.c": "e2cf5403f4cb4f7e409c31a67a50dfa9aeb965c7a31c2185b548c916f504e744",
+    "c\\matrix_sequential.c": "28da54c4d3c1dd221b2b6e1b408b93a28f48feb5d07f1618f63c9352f3772abc"
+  },
+  "commands": [
+    [
+      "gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fopenmp",
+      "-fno-tree-slp-vectorize",
+      "-fno-tree-loop-vectorize",
+      "-fopt-info-vec-optimized",
+      "c/matrix_sequential.c",
+      "-o",
+      "C:\\Users\\herna\\OneDrive\\Documentos\\Universidad\\Asignaturas ULPGC\\Tercer Curso\\Big Data\\Big-Data-Assigment3\\build\\simd\\scalar\\matrix_sequential.exe"
+    ],
+    [
+      "gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fopenmp",
+      "-fno-tree-slp-vectorize",
+      "-fno-tree-loop-vectorize",
+      "-fopt-info-vec-optimized",
+      "c/matrix_parallel.c",
+      "-o",
+      "C:\\Users\\herna\\OneDrive\\Documentos\\Universidad\\Asignaturas ULPGC\\Tercer Curso\\Big Data\\Big-Data-Assigment3\\build\\simd\\scalar\\matrix_parallel.exe"
+    ],
+    [
+      "gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fopenmp",
+      "-fno-tree-slp-vectorize",
+      "-ftree-loop-vectorize",
+      "-DENABLE_SIMD",
+      "-fopt-info-vec-optimized",
+      "c/matrix_sequential.c",
+      "-o",
+      "C:\\Users\\herna\\OneDrive\\Documentos\\Universidad\\Asignaturas ULPGC\\Tercer Curso\\Big Data\\Big-Data-Assigment3\\build\\simd\\simd\\matrix_sequential.exe"
+    ],
+    [
+      "gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fopenmp",
+      "-fno-tree-slp-vectorize",
+      "-ftree-loop-vectorize",
+      "-DENABLE_SIMD",
+      "-fopt-info-vec-optimized",
+      "c/matrix_parallel.c",
+      "-o",
+      "C:\\Users\\herna\\OneDrive\\Documentos\\Universidad\\Asignaturas ULPGC\\Tercer Curso\\Big Data\\Big-Data-Assigment3\\build\\simd\\simd\\matrix_parallel.exe"
+    ]
+  ],
+  "correctness": {
+    "scalar": "PASS: 28 full-output checks, including known, zero, identity and random cases",
+    "simd": "PASS: 28 full-output checks, including known, zero, identity and random cases"
+  }
+}

@@ -13,3 +13,6 @@ results/*
 
 !results/analysis/
 !results/analysis/**
+
+!results/simd/
+!results/simd/**

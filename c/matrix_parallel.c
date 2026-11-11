@@ -13,6 +13,9 @@ static int matrix_multiplication(const int *A, const int *B, int *C, int n) {
             for (int j = 0; j < n; ++j) C[(size_t)i*n+j] = 0;
             for (int k = 0; k < n; ++k) {
                 int a = A[(size_t)i*n+k];
+                #ifdef ENABLE_SIMD
+                #pragma omp simd
+                #endif
                 for (int j = 0; j < n; ++j)
                     C[(size_t)i*n+j] += a * B[(size_t)k*n+j];
             }

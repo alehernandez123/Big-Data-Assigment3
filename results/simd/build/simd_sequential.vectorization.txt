@@ -1,0 +1,2 @@
+c/matrix_common.h:153:30: optimized: loop vectorized using 16 byte vectors and unroll factor 4
+c/matrix_sequential.c:14:18: optimized: loop vectorized using 16 byte vectors and unroll factor 4
