@@ -1,0 +1,8 @@
+build/
+__pycache__/
+*.pyc
+*.exe
+*.o
+experiments/matrix/
+results/*
+!results/.gitkeep
