@@ -5,6 +5,25 @@
 #include <limits.h>
 #include <errno.h>
 #include <omp.h>
+#ifdef _WIN32
+#include <windows.h>
+/* Query frequency once, outside all timed regions. */
+static LARGE_INTEGER timer_frequency;
+static void initialise_timer(void) {
+    if (!QueryPerformanceFrequency(&timer_frequency)) {
+        fprintf(stderr, "High-resolution timer unavailable\n");
+        exit(EXIT_FAILURE);
+    }
+}
+static double elapsed_seconds(void) {
+    LARGE_INTEGER counter;
+    if (!QueryPerformanceCounter(&counter)) exit(EXIT_FAILURE);
+    return (double)counter.QuadPart / (double)timer_frequency.QuadPart;
+}
+#else
+static void initialise_timer(void) { }
+static double elapsed_seconds(void) { return omp_get_wtime(); }
+#endif
 #define REPETITIONS 5
 #define WARMUPS 2
 
@@ -123,11 +142,12 @@ static int benchmark(int argc, char **argv, int parallel) {
             return EXIT_FAILURE;
         }
     }
+    initialise_timer();
     int actual = 1;
     for (int run = -WARMUPS; run < REPETITIONS; ++run) {
-        double start = omp_get_wtime();
+        double start = elapsed_seconds();
         actual = matrix_multiplication(A, B, C, n);
-        double elapsed = omp_get_wtime() - start;
+        double elapsed = elapsed_seconds() - start;
         /* Consume every result outside the timer. */
         uint64_t checksum = 0;
         for (size_t i = 0; i < (size_t)n*n; ++i) checksum += (uint64_t)C[i];

@@ -1,0 +1,4 @@
+size,method,threads,status,detail
+500,sequential,1,completed,5 samples; 2 excluded warmups
+250,parallel,2,completed,5 samples; 2 excluded warmups
+250,sequential,1,completed,5 samples; 2 excluded warmups

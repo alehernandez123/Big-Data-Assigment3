@@ -1,0 +1,233 @@
+{
+  "config": {
+    "sizes": [
+      100,
+      250,
+      500,
+      1000,
+      1500
+    ],
+    "threads": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "seed": 42,
+    "minimum": 0,
+    "maximum": 10,
+    "repetitions": 5,
+    "warmups": 2,
+    "process_timeout_seconds": 60,
+    "campaign_timeout_seconds": 600,
+    "matrix_storage_budget_bytes": 268435456,
+    "order_seed": 2026,
+    "compiler_flags": [
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fopenmp"
+    ],
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "FALSE",
+      "OMP_WAIT_POLICY": "PASSIVE",
+      "OMP_THREAD_LIMIT": "16",
+      "OMP_MAX_ACTIVE_LEVELS": "1"
+    },
+    "memory_metric": "Array storage estimate: 3*n*n*sizeof(int), excluding process/runtime and thread stacks",
+    "timing_boundary": "Kernel includes output initialisation and OpenMP region; excludes allocation, I/O, validation and checksum"
+  },
+  "hardware": {
+    "cpu": [
+      {
+        "Name": "AMD Ryzen 7 6800HS with Radeon Graphics         ",
+        "NumberOfCores": 8,
+        "NumberOfLogicalProcessors": 16
+      }
+    ],
+    "computer": {
+      "TotalPhysicalMemory": 16387997696
+    },
+    "os": {
+      "Caption": "Microsoft Windows 11 Home",
+      "Version": "10.0.22631"
+    }
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "compiler": "gcc (Rev6, Built by MSYS2 project) 16.2.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "correctness": "PASS: 28 full-output checks, including known, zero, identity and random cases",
+  "input_sha256": {
+    "A_100.csv": "8f243045c0c810fe1f6680f01ab33c17871b5c88c0efc873a2f70568ed8dbe2c",
+    "B_100.csv": "1a3fd40492efea97c0a7c9fce7c0b7e7f0120ac53e1343c2824c7918a2c59a8a",
+    "A_250.csv": "3ce92bcc3f7be9e31365fc542891faea59ba4a1bd518a95fa3e442b7250fea04",
+    "B_250.csv": "9cd88091491f697ea72d80d0332e14596cb4c26cf5b827a795276ce4c29df886",
+    "A_500.csv": "7fc65d12fe7d1c00f68f4402cc8318623d5dcd68a351809b070bbeabb75c6535",
+    "B_500.csv": "738d49c49f16b765d43d789b6c38bacc1a37b914e086e0a52e32a7bcc40a17db",
+    "A_1000.csv": "d79f4cb11a7a340d9312c3c410afe1fd1a609a0cfe95983b470f6988b189e525",
+    "B_1000.csv": "a7a9dd00abdfeb35cd857bcb42853f93358651bd58f0c0a2f3890c26e933a4eb",
+    "A_1500.csv": "306e82b9751139903ab6d86e50096b8e9af150152eb4ad871222df236e2a72de",
+    "B_1500.csv": "2de442f7da108c2ba64135c1fac75a2bbc55f7e837cbdad7062c6b162a5ae7f3"
+  },
+  "configuration_order": [
+    [
+      500,
+      "sequential",
+      1
+    ],
+    [
+      250,
+      "parallel",
+      2
+    ],
+    [
+      250,
+      "sequential",
+      1
+    ],
+    [
+      100,
+      "parallel",
+      2
+    ],
+    [
+      1500,
+      "parallel",
+      2
+    ],
+    [
+      100,
+      "parallel",
+      16
+    ],
+    [
+      1000,
+      "parallel",
+      4
+    ],
+    [
+      1000,
+      "parallel",
+      16
+    ],
+    [
+      1500,
+      "parallel",
+      8
+    ],
+    [
+      100,
+      "parallel",
+      8
+    ],
+    [
+      250,
+      "parallel",
+      16
+    ],
+    [
+      100,
+      "parallel",
+      1
+    ],
+    [
+      250,
+      "parallel",
+      4
+    ],
+    [
+      100,
+      "sequential",
+      1
+    ],
+    [
+      1500,
+      "sequential",
+      1
+    ],
+    [
+      500,
+      "parallel",
+      2
+    ],
+    [
+      500,
+      "parallel",
+      4
+    ],
+    [
+      1500,
+      "parallel",
+      1
+    ],
+    [
+      1000,
+      "sequential",
+      1
+    ],
+    [
+      500,
+      "parallel",
+      1
+    ],
+    [
+      500,
+      "parallel",
+      16
+    ],
+    [
+      1000,
+      "parallel",
+      8
+    ],
+    [
+      1000,
+      "parallel",
+      1
+    ],
+    [
+      250,
+      "parallel",
+      1
+    ],
+    [
+      1500,
+      "parallel",
+      16
+    ],
+    [
+      1000,
+      "parallel",
+      2
+    ],
+    [
+      1500,
+      "parallel",
+      4
+    ],
+    [
+      500,
+      "parallel",
+      8
+    ],
+    [
+      250,
+      "parallel",
+      8
+    ],
+    [
+      100,
+      "parallel",
+      4
+    ]
+  ],
+  "source_sha256": {
+    "c\\matrix_common.h": "af092246fd7fc7b1058efb9b3218390f83c36626849723977e77c6c3185984a8",
+    "c\\matrix_parallel.c": "f921086a5f8a307a8505ff696dfd6d9630b864c826ee6b3b4ed36c1e7e2d07cc",
+    "c\\matrix_sequential.c": "f672919a126c6459071b938571e0a021086cf76c72ca51d5c819fa5463910fda"
+  },
+  "note": "Memory is matrix storage only. Affinity is not pinned. No BLAS library is used."
+}

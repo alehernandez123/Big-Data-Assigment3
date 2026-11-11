@@ -26,7 +26,8 @@ executed as part of preparing this protocol.
   Inputs match Assignment 2 generation for common sizes. SHA-256 hashes saved.
 - Two excluded warmups and five measured multiplications per configuration.
   Configuration order is shuffled with seed 2026 to reduce fixed-order effects.
-- Main-thread omp_get_wtime measures output initialisation and multiplication,
+- The main thread uses QueryPerformanceCounter on Windows (omp_get_wtime on
+  other platforms) and measures output initialisation and multiplication,
   including OpenMP region overhead. Allocation, validation, CSV I/O and checksum
   are outside the timer. Each result is consumed; actual threads are recorded.
 - Dynamic teams disabled, static row schedule, no explicit affinity pinning,
@@ -70,3 +71,12 @@ needed if timer resolution or variability makes individual runs uninformative.
 
 AI assistance: Codex helped author this protocol and the experiment runner.
 The student must review the code and interpret and validate collected evidence.
+
+## Timer correction before the completed campaign
+
+The first campaign stopped after detecting a zero-duration sample for size 100
+with two threads using this Windows OpenMP timer. That incomplete campaign and
+its original outputs are retained as diagnostic evidence, not pooled with the
+completed campaign. Both implementations now use QueryPerformanceCounter on
+Windows, with frequency initialised outside the timer. The complete campaign
+is rerun with unchanged inputs, compiler flags, thread counts and boundaries.
