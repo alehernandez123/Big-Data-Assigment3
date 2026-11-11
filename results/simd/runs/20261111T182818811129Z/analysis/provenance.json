@@ -1,0 +1,6 @@
+{
+  "source": "results/simd/runs/20261111T182818811129Z",
+  "raw_sha256": "5853a3f7e0cb385d4fa784747e99a0bf46b50a0e7baa1f774b621de4daec812e",
+  "matplotlib": "3.11.2",
+  "samples": 300
+}

@@ -1,0 +1,2 @@
+c/matrix_parallel.c:20:22: optimized: loop vectorized using 16 byte vectors and unroll factor 4
+c/matrix_common.h:153:30: optimized: loop vectorized using 16 byte vectors and unroll factor 4

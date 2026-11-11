@@ -39,6 +39,14 @@ speedup; never attribute a change in threads to vectorisation. Keep raw samples,
 metadata and compiler evidence in a separate results/simd campaign.
 The README and final report will be updated at the end.
 
+Run `python experiments/run_simd_experiments.py` for 60 configurations and
+300 samples, in seeded shuffled order, with the same 600-second campaign and
+60-second process limits. The runner rebuilds and checks both variants before
+measuring and copies compiler evidence into its timestamped output folder.
+Then run `python experiments/analyze_simd.py --run results/simd/runs/TIMESTAMP`
+using the exact folder reported by the runner. The analysis refuses incomplete
+campaigns and reports median, IQR and scalar/SIMD gain for each matched pair.
+
 ## Sources
 
 - GCC optimisation flags: https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html

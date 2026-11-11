@@ -1,0 +1,549 @@
+{
+  "config": {
+    "sizes": [
+      100,
+      250,
+      500,
+      1000,
+      1500
+    ],
+    "threads": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "seed": 42,
+    "minimum": 0,
+    "maximum": 10,
+    "repetitions": 5,
+    "warmups": 2,
+    "process_timeout_seconds": 60,
+    "campaign_timeout_seconds": 600,
+    "matrix_storage_budget_bytes": 268435456,
+    "order_seed": 2026,
+    "compiler_flags": {
+      "scalar": [
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fopenmp",
+        "-fno-tree-slp-vectorize",
+        "-fno-tree-loop-vectorize"
+      ],
+      "simd": [
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fopenmp",
+        "-fno-tree-slp-vectorize",
+        "-ftree-loop-vectorize",
+        "-DENABLE_SIMD"
+      ]
+    },
+    "openmp_environment": {
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_PROC_BIND": "FALSE",
+      "OMP_WAIT_POLICY": "PASSIVE",
+      "OMP_THREAD_LIMIT": "16",
+      "OMP_MAX_ACTIVE_LEVELS": "1"
+    },
+    "memory_metric": "Array storage estimate: 3*n*n*sizeof(int), excluding process/runtime and thread stacks",
+    "timing_boundary": "Kernel includes output initialisation and OpenMP region; excludes allocation, I/O, validation and checksum"
+  },
+  "build_metadata": {
+    "compiler": "gcc (Rev6, Built by MSYS2 project) 16.2.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "base_flags": [
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fopenmp",
+      "-fno-tree-slp-vectorize"
+    ],
+    "variants": {
+      "scalar": [
+        "-fno-tree-loop-vectorize"
+      ],
+      "simd": [
+        "-ftree-loop-vectorize",
+        "-DENABLE_SIMD"
+      ]
+    },
+    "sources": {
+      "c\\matrix_common.h": "7d189d6389bdbda96cde7b95cccb0144f39b034b5807b465334cb4540e4c00b7",
+      "c\\matrix_parallel.c": "e2cf5403f4cb4f7e409c31a67a50dfa9aeb965c7a31c2185b548c916f504e744",
+      "c\\matrix_sequential.c": "28da54c4d3c1dd221b2b6e1b408b93a28f48feb5d07f1618f63c9352f3772abc"
+    },
+    "commands": [
+      [
+        "gcc",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fopenmp",
+        "-fno-tree-slp-vectorize",
+        "-fno-tree-loop-vectorize",
+        "-fopt-info-vec-optimized",
+        "c/matrix_sequential.c",
+        "-o",
+        "C:\\Users\\herna\\OneDrive\\Documentos\\Universidad\\Asignaturas ULPGC\\Tercer Curso\\Big Data\\Big-Data-Assigment3\\build\\simd\\scalar\\matrix_sequential.exe"
+      ],
+      [
+        "gcc",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fopenmp",
+        "-fno-tree-slp-vectorize",
+        "-fno-tree-loop-vectorize",
+        "-fopt-info-vec-optimized",
+        "c/matrix_parallel.c",
+        "-o",
+        "C:\\Users\\herna\\OneDrive\\Documentos\\Universidad\\Asignaturas ULPGC\\Tercer Curso\\Big Data\\Big-Data-Assigment3\\build\\simd\\scalar\\matrix_parallel.exe"
+      ],
+      [
+        "gcc",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fopenmp",
+        "-fno-tree-slp-vectorize",
+        "-ftree-loop-vectorize",
+        "-DENABLE_SIMD",
+        "-fopt-info-vec-optimized",
+        "c/matrix_sequential.c",
+        "-o",
+        "C:\\Users\\herna\\OneDrive\\Documentos\\Universidad\\Asignaturas ULPGC\\Tercer Curso\\Big Data\\Big-Data-Assigment3\\build\\simd\\simd\\matrix_sequential.exe"
+      ],
+      [
+        "gcc",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fopenmp",
+        "-fno-tree-slp-vectorize",
+        "-ftree-loop-vectorize",
+        "-DENABLE_SIMD",
+        "-fopt-info-vec-optimized",
+        "c/matrix_parallel.c",
+        "-o",
+        "C:\\Users\\herna\\OneDrive\\Documentos\\Universidad\\Asignaturas ULPGC\\Tercer Curso\\Big Data\\Big-Data-Assigment3\\build\\simd\\simd\\matrix_parallel.exe"
+      ]
+    ],
+    "correctness": {
+      "scalar": "PASS: 28 full-output checks, including known, zero, identity and random cases",
+      "simd": "PASS: 28 full-output checks, including known, zero, identity and random cases"
+    }
+  },
+  "hardware": {
+    "cpu": [
+      {
+        "Name": "AMD Ryzen 7 6800HS with Radeon Graphics         ",
+        "NumberOfCores": 8,
+        "NumberOfLogicalProcessors": 16
+      }
+    ],
+    "computer": {
+      "TotalPhysicalMemory": 16387997696
+    },
+    "os": {
+      "Caption": "Microsoft Windows 11 Home",
+      "Version": "10.0.22631"
+    }
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "compiler": "gcc (Rev6, Built by MSYS2 project) 16.2.0\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "correctness": {
+    "scalar": "PASS: 28 full-output checks, including known, zero, identity and random cases",
+    "simd": "PASS: 28 full-output checks, including known, zero, identity and random cases"
+  },
+  "input_sha256": {
+    "A_100.csv": "8f243045c0c810fe1f6680f01ab33c17871b5c88c0efc873a2f70568ed8dbe2c",
+    "B_100.csv": "1a3fd40492efea97c0a7c9fce7c0b7e7f0120ac53e1343c2824c7918a2c59a8a",
+    "A_250.csv": "3ce92bcc3f7be9e31365fc542891faea59ba4a1bd518a95fa3e442b7250fea04",
+    "B_250.csv": "9cd88091491f697ea72d80d0332e14596cb4c26cf5b827a795276ce4c29df886",
+    "A_500.csv": "7fc65d12fe7d1c00f68f4402cc8318623d5dcd68a351809b070bbeabb75c6535",
+    "B_500.csv": "738d49c49f16b765d43d789b6c38bacc1a37b914e086e0a52e32a7bcc40a17db",
+    "A_1000.csv": "d79f4cb11a7a340d9312c3c410afe1fd1a609a0cfe95983b470f6988b189e525",
+    "B_1000.csv": "a7a9dd00abdfeb35cd857bcb42853f93358651bd58f0c0a2f3890c26e933a4eb",
+    "A_1500.csv": "306e82b9751139903ab6d86e50096b8e9af150152eb4ad871222df236e2a72de",
+    "B_1500.csv": "2de442f7da108c2ba64135c1fac75a2bbc55f7e837cbdad7062c6b162a5ae7f3"
+  },
+  "configuration_order": [
+    [
+      1000,
+      "parallel",
+      1,
+      "simd"
+    ],
+    [
+      1000,
+      "sequential",
+      1,
+      "simd"
+    ],
+    [
+      100,
+      "parallel",
+      1,
+      "scalar"
+    ],
+    [
+      1500,
+      "parallel",
+      16,
+      "scalar"
+    ],
+    [
+      1000,
+      "parallel",
+      16,
+      "simd"
+    ],
+    [
+      100,
+      "parallel",
+      4,
+      "scalar"
+    ],
+    [
+      100,
+      "parallel",
+      4,
+      "simd"
+    ],
+    [
+      250,
+      "parallel",
+      8,
+      "simd"
+    ],
+    [
+      100,
+      "parallel",
+      8,
+      "simd"
+    ],
+    [
+      100,
+      "parallel",
+      8,
+      "scalar"
+    ],
+    [
+      500,
+      "sequential",
+      1,
+      "simd"
+    ],
+    [
+      1500,
+      "parallel",
+      4,
+      "scalar"
+    ],
+    [
+      1000,
+      "parallel",
+      8,
+      "scalar"
+    ],
+    [
+      1000,
+      "parallel",
+      1,
+      "scalar"
+    ],
+    [
+      1000,
+      "parallel",
+      8,
+      "simd"
+    ],
+    [
+      1500,
+      "sequential",
+      1,
+      "scalar"
+    ],
+    [
+      250,
+      "parallel",
+      4,
+      "scalar"
+    ],
+    [
+      500,
+      "parallel",
+      2,
+      "simd"
+    ],
+    [
+      500,
+      "parallel",
+      16,
+      "scalar"
+    ],
+    [
+      1000,
+      "parallel",
+      4,
+      "scalar"
+    ],
+    [
+      250,
+      "parallel",
+      8,
+      "scalar"
+    ],
+    [
+      100,
+      "parallel",
+      2,
+      "scalar"
+    ],
+    [
+      1500,
+      "parallel",
+      2,
+      "simd"
+    ],
+    [
+      500,
+      "parallel",
+      8,
+      "scalar"
+    ],
+    [
+      1000,
+      "parallel",
+      16,
+      "scalar"
+    ],
+    [
+      100,
+      "sequential",
+      1,
+      "simd"
+    ],
+    [
+      1500,
+      "parallel",
+      1,
+      "scalar"
+    ],
+    [
+      500,
+      "parallel",
+      16,
+      "simd"
+    ],
+    [
+      250,
+      "parallel",
+      16,
+      "scalar"
+    ],
+    [
+      250,
+      "parallel",
+      2,
+      "scalar"
+    ],
+    [
+      500,
+      "sequential",
+      1,
+      "scalar"
+    ],
+    [
+      500,
+      "parallel",
+      1,
+      "scalar"
+    ],
+    [
+      1500,
+      "parallel",
+      8,
+      "simd"
+    ],
+    [
+      500,
+      "parallel",
+      4,
+      "simd"
+    ],
+    [
+      1500,
+      "parallel",
+      1,
+      "simd"
+    ],
+    [
+      500,
+      "parallel",
+      1,
+      "simd"
+    ],
+    [
+      1500,
+      "sequential",
+      1,
+      "simd"
+    ],
+    [
+      1000,
+      "sequential",
+      1,
+      "scalar"
+    ],
+    [
+      1500,
+      "parallel",
+      16,
+      "simd"
+    ],
+    [
+      100,
+      "parallel",
+      16,
+      "scalar"
+    ],
+    [
+      1000,
+      "parallel",
+      4,
+      "simd"
+    ],
+    [
+      100,
+      "sequential",
+      1,
+      "scalar"
+    ],
+    [
+      500,
+      "parallel",
+      4,
+      "scalar"
+    ],
+    [
+      1500,
+      "parallel",
+      8,
+      "scalar"
+    ],
+    [
+      250,
+      "parallel",
+      1,
+      "simd"
+    ],
+    [
+      100,
+      "parallel",
+      1,
+      "simd"
+    ],
+    [
+      500,
+      "parallel",
+      8,
+      "simd"
+    ],
+    [
+      1000,
+      "parallel",
+      2,
+      "simd"
+    ],
+    [
+      250,
+      "sequential",
+      1,
+      "simd"
+    ],
+    [
+      1500,
+      "parallel",
+      2,
+      "scalar"
+    ],
+    [
+      100,
+      "parallel",
+      16,
+      "simd"
+    ],
+    [
+      250,
+      "parallel",
+      4,
+      "simd"
+    ],
+    [
+      250,
+      "parallel",
+      2,
+      "simd"
+    ],
+    [
+      500,
+      "parallel",
+      2,
+      "scalar"
+    ],
+    [
+      250,
+      "sequential",
+      1,
+      "scalar"
+    ],
+    [
+      250,
+      "parallel",
+      16,
+      "simd"
+    ],
+    [
+      1500,
+      "parallel",
+      4,
+      "simd"
+    ],
+    [
+      100,
+      "parallel",
+      2,
+      "simd"
+    ],
+    [
+      1000,
+      "parallel",
+      2,
+      "scalar"
+    ],
+    [
+      250,
+      "parallel",
+      1,
+      "scalar"
+    ]
+  ],
+  "source_sha256": {
+    "c\\matrix_common.h": "7d189d6389bdbda96cde7b95cccb0144f39b034b5807b465334cb4540e4c00b7",
+    "c\\matrix_parallel.c": "e2cf5403f4cb4f7e409c31a67a50dfa9aeb965c7a31c2185b548c916f504e744",
+    "c\\matrix_sequential.c": "28da54c4d3c1dd221b2b6e1b408b93a28f48feb5d07f1618f63c9352f3772abc"
+  },
+  "note": "Memory is matrix storage only. Affinity is not pinned. No BLAS library is used."
+}
