@@ -1,0 +1,41 @@
+{
+  "sizes": [
+    100,
+    250,
+    500,
+    1000,
+    1500
+  ],
+  "threads": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "seed": 42,
+  "minimum": 0,
+  "maximum": 10,
+  "repetitions": 5,
+  "warmups": 2,
+  "process_timeout_seconds": 60,
+  "campaign_timeout_seconds": 600,
+  "matrix_storage_budget_bytes": 268435456,
+  "order_seed": 2026,
+  "compiler_flags": [
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fopenmp"
+  ],
+  "openmp_environment": {
+    "OMP_DYNAMIC": "FALSE",
+    "OMP_PROC_BIND": "FALSE",
+    "OMP_WAIT_POLICY": "PASSIVE",
+    "OMP_THREAD_LIMIT": "16",
+    "OMP_MAX_ACTIVE_LEVELS": "1"
+  },
+  "memory_metric": "Array storage estimate: 3*n*n*sizeof(int), excluding process/runtime and thread stacks",
+  "timing_boundary": "Kernel includes output initialisation and OpenMP region; excludes allocation, I/O, validation and checksum"
+}

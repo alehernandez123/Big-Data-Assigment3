@@ -6,3 +6,7 @@ __pycache__/
 experiments/matrix/
 results/*
 !results/.gitkeep
+
+# Keep reproducibility evidence; exploratory output matrices remain ignored.
+!results/runs/
+!results/runs/**
